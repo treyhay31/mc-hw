@@ -55,11 +55,15 @@ To run your own instance of this application, you will need:
     - this framework will require a programmatic user from your AWS account
     - TODO: setup a secret manager
 1.  [Influx DB Cloud Account](https://cloud2.influxdata.com/signup)
+    - *code uses api token*
     - The application expects two buckets to be created
       - BTC
       - BTC_24hr_rank
       - \* no need to create any schema, the app will take care of that
       - TODO: name buckets more appropriately
+1.  [Cryptowatch Account](https://cryptowat.ch/home)
+    - *code uses api token*
+    - This may be optional, but the code currently uses an API token for increased usage permissions
 
 ### Install
 
