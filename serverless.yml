@@ -1,7 +1,8 @@
+org: treyhay
+app: btc-data-tracker
 service: btc-data-tracker
 
 frameworkVersion: '3'
-
 
 provider:
   name: aws
@@ -13,9 +14,21 @@ functions:
     events:
       # Invoke Lambda function every minute
       - schedule: rate(1 minute)
+    environment:
+      INFLUX_TOKEN: ${param:influx_api_token}
+      CRYPTO_TOKEN: ${param:crypto_api_token}
   getMetrics:
     handler: handler.getMetrics
     events:
       - httpApi:
-          path: /
+          path: /metrics
           method: get
+      - httpApi:
+          path: /metrics/{metric}
+          method: get
+    environment:
+      INFLUX_TOKEN: ${param:influx_api_token}
+      CRYPTO_TOKEN: ${param:crypto_api_token}
+
+plugins:
+  - serverless-python-requirements
